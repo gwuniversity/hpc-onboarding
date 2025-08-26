@@ -1,0 +1,35 @@
+# An Introduction to SLURM
+
+This article provides an introduction to SLURM, the scheduler used on George Washington University’s high-performance computing (HPC) clusters. It contains an overview of the most notable commands users would need, the node queues and specifications for our primary clusters, and explanations of key terms and factors in job scheduling in HPC.
+
+## Background Information on Schedulers
+
+A scheduler is a program designed to assign available resources to perform certain tasks. In the context of HPC, this scheduler is typically one central to organizing nodes within the cluster, partitioning them to users for particular processes they need done. Think of it like an automated program that sorts out you and every other user’s requests for resources on its own.
+
+With that in mind, our systems use a scheduler known as SLURM. SLURM calculates a value known as “priority”, based on numerous factors both within and outside of a user’s individual control. An example of the former is the number of jobs you have submitted at a given time, as well as the time limit set for each. Meanwhile, an example of the latter is your school designation. Rather than being a first come, first serve system, SLURM uses this priority value to determine which resources go to whom, and who should be next up to go if a node is almost done with its current job.
+
+Within SLURM, nodes are organized into what the system lists as “partitions”, but colloquially we refer to these as “queues”. In our organizational logic, each of the queues is defined by either the specifications of all the nodes within it, the time limit that you can run a job for on it, or both. Below is a table for the Pegasus and Cerberus queues, as well as the specifications of nodes in each. Please note that depending on your school designation, you may or may not be able to see some of the queues when attempting some of the commands later in this tutorial. This is normal—some queues are limited to particular departments or schools, so if you don’t see it when using **sinfo** later in the lesson, you likely do not have access to those nodes.
+
+\[Table to be added later\!\]
+
+---
+
+## Essential SLURM Commands
+
+Let’s now discuss how to interact with SLURM, in order to determine the current status of queues, as well as check pending and past jobs. There are numerous unique commands to SLURM, but fortunately all of them begin with the letter “s”, making them a little easier to remember than otherwise.
+
+The first major command is **sinfo**, which will show the current status of the queues on the cluster. Rows are divided into the queues themselves, and then split by state from there; this is why you may see multiple listings of “small-gpu” or the like at times. You’ll see all the queues you can submit jobs to once you press enter. In terms of states of interest to most users, there’s essentially two: *idle* means that nodes listed in that row should be available to use if you submit a job to that queue now, while *alloc* means that the nodes in that row are used. If a queue is listed with only “alloc” state nodes, it means the queue is fully in use and you won’t immediately get a node submitting a job to it. Do note that you can still submit jobs to it, just means that you might need to wait for a node to become available\! All other states aside from idle mean the queue is in some way unavailable or down, so these two are the most important for the typical user.
+
+The next major command is **squeue**, which will show you all your pending and running jobs. Adding the option *\--me* after the command will make it you and your jobs alone, which is what is recommended. You’ll see the job ID, your job name, the user who submitted it (in this case, it’ll always be you), the state of the job, the number of nodes requested and a special final column. This final column will show the node(s) your job is running on if currently running (“R”) or completing (“CG”); otherwise, it will show a reason for pending in parentheses. There could be multiple reasons that potentially display, but the major ones are “(Priority)” and “(Resources)”. You can think of the former as being “You are not the next in line to get a node, please wait for longer” and the latter as being “You are next in line to get a node, whenever one becomes available in the queue”. Additionally, a value of “(None)” typically means the system is just getting one of the available nodes ready for you, as this is usually seen when submitting to a queue with an idle node.
+
+**NOTE:** At this time, there is no way for a typical user to view the full list of pending jobs on a given queue, and we have no plans in the future to make such lists publicly available. User privacy is one important reason underpinning this, but another is the fact that the priority system makes things more complex than what they may seem at surface level. For instance, some users may submit thousands of jobs to the same queue, and if those jobs were publicly available for other users to see, they may send tickets to RTS complaining about the sheer number of jobs supposedly slowing down access to the queue. However, as explained earlier, the “priority” value is influenced by the number of jobs you submit: more jobs means a worse priority, so someone submitting fewer jobs than another user with all other factors being equal will have their jobs run before the one submitting more jobs.
+
+The final command we will go over in this tutorial is **sacct**, used for looking into past jobs that completed or failed for debugging or analysis purposes. Doing so with no options will list all your past jobs, so it’s recommended to add the *\-j* option followed by the job ID of the particular job you are interested in searching for, as this will limit the list to just that job ID. If the information shown in this compact default view is insufficient, we recommend adding the options *\-a \--long* to get a more detailed view. This is a perfect command to use when running a test job to see how long your code takes to run with a smaller input file, as it will show the time it took to run to completion/failure as one of the entries in the detailed view. Additionally, for failed jobs, you’ll receive an exit code that can be used to further debug what went wrong and adjust for your next job.
+
+There are two more important commands that will be relegated to their own article—**sbatch** and **salloc**. These are ways of actually submitting jobs to be run through SLURM, the centerpiece of a scheduler’s purpose. Due to the additional detail necessary to fully explain them, they are covered on the next page of this onboarding guide.
+
+---
+
+## Further Assistance
+
+Should you have any issues using any of these commands, such as sinfo or squeue not working as intended, please email [hpchelp@gwu.edu](mailto:hpchelp@gwu.edu) and detail the problems you encountered. Someone at Research Technology Services (RTS) will assist you as available\!
