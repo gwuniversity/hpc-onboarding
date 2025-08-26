@@ -1,4 +1,6 @@
-This article outlines the process to upload, download and manage files within the Pegasus HPC cluster at GW, as well as the structure of the filesystems on the platform. Reading this article will give you an understanding of where particular files should go, how to organize and ensure data doesn’t get removed, as well as general policies regarding storage on the system.
+# Uploading and Managing Files on HPC Clusters
+
+This article outlines the process to upload, download and manage files within HPC clusters at GW, as well as the structure of the filesystems on the platform. Reading this article will give you an understanding of where particular files should go, how to organize and ensure data doesn’t get removed, as well as general policies regarding storage on the system. For the purposes of streamlining explanation, this article will use Pegasus as a central example, but other clusters maintained by GW have very similar structures.
 
 **Note:** This article is exclusively for uploading files stored locally on a personal computer or device, not files stored in cloud systems (i.e. Google Drive, Box, etc.). For information on that, please refer to [this article](https://hpc.gwu.edu/pegasus/globus-setup/) present on the HPC website.
 
