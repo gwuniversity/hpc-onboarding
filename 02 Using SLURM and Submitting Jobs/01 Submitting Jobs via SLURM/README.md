@@ -1,4 +1,4 @@
-# How to: Submit Jobs on Clusters using SLURM
+# Submitting Jobs on Clusters using SLURM
 
 This article provides a tutorial for submitting jobs with SLURM, the scheduler used on George Washington University’s high-performance computing (HPC) clusters. It will go over the difference between batch jobs and interactive jobs, the relative strengths and weaknesses of each, and the process involved for submitting each type onto your desired queue for execution.
 
