@@ -1,4 +1,4 @@
-# How to: Navigate Using the Command Line in HPC Clusters
+# Navigating HPC Clusters Using the Command Line
 
 This article outlines how to interact with the George Washington University’s high-performance computing (HPC) clusters after logging-on through your computer’s command line. To those already familiar with interacting with a Linux computer through text alone, feel free to skip to the next lesson on submitting a job using SLURM.
 
