@@ -1,3 +1,5 @@
+# Creating an SSH Key Pair
+
 This article outlines how to create SSH key pairs on Windows, Mac OS, and Linux, and how to use them to access GW HPC clusters.
 
 Mac OS and Linux use the same process, since both are built from a Unix foundation. These instructions may also be used if you are using Unix-like software (e.g. GitBash or Cygwin) on Windows. 
