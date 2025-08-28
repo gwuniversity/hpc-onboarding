@@ -44,7 +44,7 @@
 # For other modules, use the command "module avail" to see a full list of modules. Add a new line below after the load
 # instruction stating "module load [name of desired module]" to have access to that module in the code you wish to run.
 module load python3
-python [filepath]
+python3 [filepath]
 
 # Once you're happy with everything here, save it in nano (CRTL+O) and submit it using the command "sbatch [filename].sh".
 # If you haven't changed the filename, it would be "sbatch job_submit_template.sh".
