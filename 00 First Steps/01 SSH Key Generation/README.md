@@ -30,7 +30,7 @@ At GW, all high-performance computing (HPC) clusters are accessed via SSH, thus 
 5. If done properly, you should now be prompted to enter a passphrase to lock your SSH key pair. Type your desired passphrase in, then hit **Enter**. You should then be prompted to re-enter your passphrase; retype your passphrase and press **Enter** once done.  
    1. **Note:** Research Technology Services (RTS) suggests that new users generate a passphrase via Diceware, a method of generating secure passphrases with the use of [this handy widget](https://diceware.dmuth.org/). We recommend a minimum of 4 rolls to properly secure your files.  
 6. To verify your keys have been successfully generated, repeat Step 2\. If the files aren’t present, return to Step 3 and try again.  
-7. In order to see the contents of your public key (id\_rsa.pub), input “cat \~/.ssh/id\_rsa.pub” into the Terminal, then press **Enter** to get the full public key within the window. Copy and paste or upload this key into the **output of your public key** field of the [HPC Access Form](https://hpc.gwu.edu/getting-access/).
+7. In order to see the contents of your public key (id\_rsa.pub), input “cat \~/.ssh/id\_rsa.pub” into the Terminal, then press **Enter** to get the full public key within the window. **We need the full key, starting from "ssh-rsa" all the way through to and including the device identifier after the double equals sign.** Copy and paste or upload this key into the **output of your public key** field of the [HPC Access Form](https://hpc.gwu.edu/getting-access/).
 
 ### Alternative Method for Windows
 
@@ -46,7 +46,7 @@ Should you not have or wish to download software to interface with Windows in a 
 5. If done properly, you should now be prompted to enter a passphrase to lock your SSH key pair. Type your desired passphrase in, then hit **Enter**. You should then be prompted to re-enter your passphrase; retype your passphrase and press **Enter** once done.  
    1. **Note:** Research Technology Services (RTS) suggests that new users generate a passphrase via Diceware, a method of generating secure passphrases with the use of [this handy widget](https://diceware.dmuth.org/). We recommend a minimum of 4 rolls to properly secure your files.  
 6. To verify your keys have been successfully generated, repeat Step 2\. If the files aren’t present, return to Step 3 and try again.  
-7. In order to see the contents of your public key (id\_rsa.pub), input “notepad %userprofile%\\.ssh\\id\_rsa.pub” into the Command Prompt, then press **Enter** to get the full public key within an instance of Notepad. Copy and paste or upload this key into the **output of your public key** field of the [HPC Access Form](https://hpc.gwu.edu/getting-access/).
+7. In order to see the contents of your public key (id\_rsa.pub), input “notepad %userprofile%\\.ssh\\id\_rsa.pub” into the Command Prompt, then press **Enter** to get the full public key within an instance of Notepad. **We need the full key, starting from "ssh-rsa" all the way through to and including the device identifier after the double equals sign.** Copy and paste or upload this key into the **output of your public key** field of the [HPC Access Form](https://hpc.gwu.edu/getting-access/).
 
 ---
 
