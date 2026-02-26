@@ -18,7 +18,8 @@
 # -p stands for partition, or "queue" as we colloquially refer to them. These are a remnant of the old style of scheduling,
 # and are planned for decommissioning once we swap to the resource-based scheduling system full time on May 9th, 2026.
 # For now, however, you will still need to specify a queue in order to use the resource-based system.
-# For CPU jobs on Pegasus, use 'cpu'. For all resource-based requests on Cerberus, use 'workshop'. What is it on Raptor?
+# For CPU jobs on Pegasus, use 'cpu'. For all resource-based requests on Cerberus, use 'workshop'. 
+# For CPU jobs on Raptor, use 'defq'.
 #SBATCH -p cpu
 
 # The next options are also important, and you'll need to define all of them in order to make the most of the new system.
