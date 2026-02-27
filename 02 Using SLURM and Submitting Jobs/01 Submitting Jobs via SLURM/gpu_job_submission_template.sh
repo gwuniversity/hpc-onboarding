@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Hello! Here is a template for submitting a GPU job via SLURM, while explaining the different options and lines.
-# This has been updated to accommodate the new resource-based scheduling system, and is accurate as of February 23rd, 2026.
+# This has been updated to accommodate the new resource-based scheduling system, and is accurate as of February 27th, 2026.
 # This has been written by Jake Messick, Cyberinfrastructure Specialist I with Research Technology Services.
 # For any assistance with any issues you may encounter, please email hpchelp@gwu.edu and detail any problems there.
 # Without further ado, let's begin!
@@ -12,7 +12,7 @@
 # I've defaulted to four hours here, but you can adjust to your needs. Shorter times are prioritized by the scheduler.
 # If your code has yet to finish by the time the value specified here has been hit, it will terminate prematurely.
 # Make sure to run tests of your code with small amounts of input to see how long it may run for, then extrapolate for the final.
-# Please keep in mind that you cannot set a time longer than 14 days for CPU jobs.
+# Please keep in mind that you cannot set a time longer than the queue's timelimit. On Pegasus, this is 7 days for GPU jobs.
 #SBATCH -t 4:00:00
 
 # -p stands for partition, or "queue" as we colloquially refer to them. These are a remnant of the old style of scheduling,
@@ -42,21 +42,24 @@
 # 
 # <COUNT> is the number of that type of GPU you need. Note that without parallelization, requesting more than one GPU
 # will not use more than one. Parallelization is also required for requesting more GPUs than available on a single node.
+# Thus, you should almost always put a "1" for this section of the command, unless you're certain your code can take advantage.
 # The aforementioned command should show you what's available at most on a single node, so use that to fill out this option.
 #SBATCH --gres=gpu:<TYPE>:<COUNT>
 
 # --cpus-per-gpu are the number of cores you want for your job, per GPU requested.
 # SLURM often conflates the terms 'cpu' and 'core', so keep that in mind as you adjust these settings.
-# Each core can have a maximum of 16GB of memory assigned to it. If you request more memory than the maximum supported by the
-# core count, the system will automatically increase the number of cores to meet your required memory allocation.
+# In order to improve the overall efficiency of the system and allow all researchers access to their necessary resources,
+# we suggest that you request fewer than an entire node's worth of cores, unless your jobs require a high core count.
+# Different GPU nodes have different total core counts, so check using "scontrol show node [nodename]" for particulars. 
+# If unspecified, you will be given 4 cores total.
 #SBATCH --cpus-per-gpu=4
 
 # --mem-per-gpu is the total amount of memory (RAM) you wish to have for your job, per GPU requested.
 # This is NOT VRAM. Rather, this is the total DRAM for your CPU cores. Use G for gigabytes, M for megabytes.
 # VRAM is hardwired to each GPU type; you cannot request more than what the specific type of GPU requested offers on its own.
-# Failure to specify this will leave you with the default 8GB of TOTAL memory; thus, make sure to specify as much as you need.
 # Should you prefer specifying the total overall memory for the entire job, feel free to use --mem instead.
-# At the same time, be reasonable with your requested amounts. Higher amounts of memory requested will reduce your jobs' priority.
+# Failure to specify a value will leave you with the default 4GB per core requested; thus, make sure to specify as much as you need.
+# At the same time, be reasonable with your requests. Higher amounts of requested RAM will likely take longer to allocate.
 #SBATCH --mem-per-gpu=16G
 
 # We now move onto four options that, while not required, are highly recommended for ease of debugging your jobs and staying
