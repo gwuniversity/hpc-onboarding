@@ -37,11 +37,13 @@ To use this command with the new resource-based allocation system, you'll need t
 ### CPU Interactive Job Examples
 
 salloc -p cpu -t 2\:00\:00 --cpus-per-task=8 --mem=16G
+
 salloc -p cpu -t 30:00 --cpus-per-task=4 --mem-per-cpu=2G
 
 ### GPU Interactive Job Examples
 
 salloc -p gpu -t 30:00 --gres=gpu\:v100\:1 --cpus-per-gpu=4 --mem=16G
+
 salloc -p gpu -t 2\:00\:00 --gres=gpu\:a100\:1 --cpus-per-task=8 --mem-per-cpu=4G
 
 Entering these commands will display a jobID associated with your interactive job, which you'll need to keep in mind for later. Once your allocation has been confirmed, you can gain access to your interactive resources using the command "srun --pty bash". From there, you can run code directly through the command line as you’d like until your time limit has hit. Make sure that you aren’t doing so on the login node, as running code on the login nodes is strictly prohibited\! If you’re done doing what you want with time still remaining on your reservation, exit the node by typing “exit” and hitting enter, followed by “scancel \[jobID\]” \+ enter, with the job ID you saw earlier in this process. That will free the resources, allowing them to be used by another researcher, so make sure you cancel your interactive jobs once you’ve done everything you want to on them\!
