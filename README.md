@@ -1,8 +1,6 @@
 # hpc-onboarding
 A comprehensive guide for getting started with High Performance Computing (HPC) here at the George Washington University.
 
-**NOTE:** Some of the pages are currently under construction for the upcoming shift from node-based allocation to resource-based allocation, particularly those in the third section (Using Slurm and Submitting Jobs). This note will be removed once those pages are finalized for the new methodology of submitting jobs to clusters; thanks for your patience and understanding!
-
 # Table of Contents
 1. First Steps
    1. [SSH Key Generation](https://github.com/gwuniversity/hpc-onboarding/tree/main/00%20First%20Steps/01%20SSH%20Key%20Generation)
