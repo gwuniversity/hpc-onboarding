@@ -37,6 +37,7 @@
 # --gres is the option for requesting GPUs. This is required if you want a GPU; selecting the queue alone isn't enough.
 # <TYPE> is the specific kind of GPU you're looking to request. If you wish to know what GPUs are available on the cluster,
 # you can use the command below to scope out all the available configurations. Examples include v100, a100, l40s, etc.
+# This type is required for any GPU job, so please make sure you set it correctly.
 # 
 # sinfo -o "%P %G"
 # 
