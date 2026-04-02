@@ -71,23 +71,23 @@ SLURM provides several options to control how tasks are distributed across a nod
   Helps align tasks with CPU sockets  
 
 - `-m, --distribution={*|block|cyclic|arbitrary|plane=<size>}[:{*|block|cyclic|fcyclic}[:{*|block|cyclic|fcyclic}]][,{Pack|NoPack}]`  
-  Controls how tasks are spread across available hardware  
+  Controls how tasks are spread across available hardware
+
+- `-B, --extra-node-info=<sockets>[:cores[:threads]]`  
+  Restrict node selection to nodes with at least the specified number of sockets, cores per socket and/or threads per core.
 
 These options allow you to organize how your job is laid out without changing the total resources requested.
 
 ### Binding Tasks to Hardware / Task Affinity
 
-In addition to placement, reserchers can control how tasks are bound to CPU cores and memory, which may be 
-useful for jobs that show variability in runtime between runs
+In addition to placement, researchers can control how tasks are bound to CPU cores and memory, which may be 
+useful for jobs that show variability in runtime between runs:
 
 - `--cpu-bind` (srun only)  
   Pins tasks to specific CPU cores to improve consistency  
 
 - `--mem-bind` (if needed)  
   Helps keep memory access local to the CPU running each task 
-
-- `-B, --extra-node-info=<sockets>[:cores[:threads]]`  
-  Restrict node selection to nodes with at least the specified number of sockets, cores per socket and/or threads per core.
 
 **NOTE:** Pegasus is configured to support task affinity. This means that CPU and memory resources are tracked 
 at a fine-grained level, and options such as `--cpu-bind` and `--mem-bind` will behave as expected when used. 
