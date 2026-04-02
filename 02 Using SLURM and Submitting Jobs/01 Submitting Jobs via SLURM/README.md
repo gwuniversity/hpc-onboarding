@@ -50,6 +50,75 @@ Entering these commands will display a jobID associated with your interactive jo
 
 ---
 
+## Controlling Job Placement and Performance
+
+In addition to requesting resources, you can control how your job is placed and runs on a node. This can have a significant impact on performance, particularly for multi-core and parallel workloads. When a job is assigned to a node, SLURM determines where each task (or rank) will run and how it utilizes CPU cores and memory. Workloads that
+
+- use many CPU cores  
+- rely on frequent communication between tasks  
+- are sensitive to memory bandwidth or latency  
+
+may benefit from this type of granular control. 
+
+### Controlling Task Placement
+
+SLURM provides several options to control how tasks are distributed across a node:
+
+- `--ntasks-per-node`  
+  Controls how many tasks are placed on each node  
+
+- `--ntasks-per-socket`  
+  Helps align tasks with CPU sockets  
+
+- `-m, --distribution={*|block|cyclic|arbitrary|plane=<size>}[:{*|block|cyclic|fcyclic}[:{*|block|cyclic|fcyclic}]][,{Pack|NoPack}]`  
+  Controls how tasks are spread across available hardware  
+
+These options allow you to organize how your job is laid out without changing the total resources requested.
+
+### Binding Tasks to Hardware / Task Affinity
+
+In addition to placement, reserchers can control how tasks are bound to CPU cores and memory, which may be 
+useful for jobs that show variability in runtime between runs
+
+- `--cpu-bind` (srun only)  
+  Pins tasks to specific CPU cores to improve consistency  
+
+- `--mem-bind` (if needed)  
+  Helps keep memory access local to the CPU running each task 
+
+- `-B, --extra-node-info=<sockets>[:cores[:threads]]`  
+  Restrict node selection to nodes with at least the specified number of sockets, cores per socket and/or threads per core.
+
+**NOTE:** Pegasus is configured to support task affinity. This means that CPU and memory resources are tracked 
+at a fine-grained level, and options such as `--cpu-bind` and `--mem-bind` will behave as expected when used. 
+Most users do not need to worry about these details, but they are available for workloads that require more precise 
+control.
+
+### Example: Refining Task Placement  
+
+```
+#!/bin/bash
+#SBATCH -p cpu
+#SBATCH -t 1:00:00
+#SBATCH --ntasks=40
+#SBATCH --ntasks-per-node=20
+#SBATCH --ntasks-per-socket=10
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=32G
+
+srun --cpu-bind=cores your_program
+```  
+
+### General Guidance
+
+For most workloads:
+
+- Start with simple resource requests and add placement options as necessary.   
+- Use small test jobs to evaluate performance before scaling up. RTS staff will be happy to assist you if needed.  
+- Add binding options if your workload shows inconsistent performance. 
+
+---
+
 ## Further Assistance
 
 Should you have any issues using any of these commands, such as difficulties with loading certain modules or running your code non-interactively, please email [hpchelp@gwu.edu](mailto:hpchelp@gwu.edu) and detail the problems you encountered. Someone at Research Technology Services (RTS) will assist you as available\!
